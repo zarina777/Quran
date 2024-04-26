@@ -26,11 +26,42 @@ settings.append(mode,setting)
 
 
 // Side BAR
-let sideBar = document.createElement('div')
-sideBar.classList.add('sidebar')
-app.append(sideBar)
+let nav = null
+let home = null
+let mainPage=null
+let saved = null
 
 
+
+
+const history = {
+  push: (url) => {
+    window.history.pushState({}, "", `#/${url}`);
+    sessionStorage.setItem("path", url);
+  },
+  path: () => {
+    return sessionStorage.getItem("path");
+  },
+};
+
+const sideBar ={
+addComponents:()=>{
+  nav = document.createElement('ul');
+  nav.classList.add('sidebar');
+  app.append(nav)
+  home= document.createElement('li')
+  home.innerHTML='<i class="fa-solid fa-house"></i>'
+  mainPage= document.createElement('li')
+  mainPage.innerHTML='<i class="fa-solid fa-book-open"></i>'
+  saved= document.createElement('li')
+  saved.innerHTML='<i class="fa-solid fa-bookmark"></i>'
+  nav.append(home,mainPage,saved)
+  for(let i=0;i<nav.children.length;i++){
+    nav.children[i].classList.add('sidebarNavEl')
+  }
+}
+}
+sideBar.addComponents()
 
 
 

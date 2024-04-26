@@ -82,5 +82,14 @@
 	height: calc(100vh - 100px);
 	top: 100px;
 	width: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+	gap: 35px;
+  }
+  .sidebarNavEl{
+font-size: 25px;
+color:rgb(255, 149, 0);
   }
   
