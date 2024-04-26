@@ -18,14 +18,33 @@ let settings = document.createElement('ul')
 settings.classList.add('settings')
 topNav.append(settings)
 
+let modal = document.createElement('div')
+modal.setAttribute('class','settingModal')
+modal.innerHTML=`<h2>Settings</h2> <span> <i class="fa-solid fa-x"></i></span>`
+app.append(modal)
+ 
+let bgCover = document.createElement('div')
+bgCover.setAttribute('class','bg-cover')
+app.append(bgCover)
+
 let mode = document.createElement('li')
 mode.innerHTML=`<i class="fa-solid fa-moon"></i>`
+
 let setting = document.createElement('li')
 setting.innerHTML=`	<i class="fa-solid fa-gear"></i>`
 settings.append(mode,setting)
-
-
-// Side BAR
+setting.addEventListener('click',()=>{
+  bgCover.style.display='block'
+  modal.style.right='-1px'
+})
+bgCover.addEventListener('click',()=>{
+  bgCover.style.display='none'
+  modal.style.right='-200%'
+})
+document.getElementsByClassName('fa-x')[0].addEventListener('click',()=>{
+  bgCover.style.display='none'
+  modal.style.right='-200%'
+})
 let nav = null
 let home = null
 let mainPage=null
@@ -44,6 +63,8 @@ const history = {
   },
 };
 
+
+//SIDEBAR
 const sideBar ={
 addComponents:()=>{
   nav = document.createElement('ul');
@@ -66,12 +87,18 @@ function getContainer(){
   container.setAttribute("class", "container");
   app.appendChild(container);
 }
+
+
+//HOME PAGE
 function toHome(){
   let home = document.createElement('div')
   home.setAttribute("class", "home");
   home.innerHTML= '<h1>Welcome to Home page...</h1>'
   container.append(home)
 }
+
+
+//MAIN PAGE
 function toMainPage(){
   let mainPage = document.createElement('div')
   mainPage.setAttribute("class", "mainPage");
@@ -82,21 +109,18 @@ function toMainPage(){
   leftSide.classList.add('leftSide')
   mainPage.append(leftSide)
 
-  let searchSurah= document.createElement('div')
+  let searchSurah= document.createElement('form')
   searchSurah.setAttribute('class','searchSurah')
-  mainPage.append(searchSurah)
-
-  let searchInput = document.createElement('input')
-  searchInput.placeholder='Search by Surah Name'
-  searchSurah.append(searchInput)
-
+  searchSurah.innerHTML='<input class="searchInput" type="text" placeholder="Search by Surah Name"><i class="fa-solid fa-magnifying-glass"></i>'
+  leftSide.append(searchSurah)
+  
   let quranSurahs = document.createElement('ul')
-  quranSurahs.setAttribute('class','quranSurahs')
-  searchSurah.append(quranSurahs)
+  quranSurahs.setAttribute('class','quranSurahsUl')
+  leftSide.append(quranSurahs)
 
   for(let i = 0; i<10;i++){
     let li = document.createElement('li')
-    li.innerHTML=`${i+1} Surah name`
+    li.innerHTML=`<span>${i+1}</span> <div class='surah-info'><h3>Surah name</h3> <p>Subname</p></div> <p>Arabic text</p>`
     quranSurahs.append(li)
   }
   
@@ -110,9 +134,9 @@ function toMainPage(){
   let cards = document.createElement("div")
   cards.setAttribute('class','cards-container')
   rightSide.append(cards)
-  for(let i = 0; i<10;i++){
+  for(let i = 0; i<15;i++){
     let card= document.createElement('div')
-    card.innerHTML=`<h3>Surah</h3>`
+    card.innerHTML=`<h3>${i+1} Surah</h3>`
     cards.append(card)
 
   }
@@ -121,7 +145,7 @@ function toMainPage(){
 function toSaved(){
   let saved = document.createElement('div')
   saved.setAttribute("class", "saved");
-  saved.innerHTML= '<h1>Favourite surahs...</h1>'
+  saved.innerHTML= '<h1>Saved Surahs...</h1>'
   container.append(saved)
 }
 function entered(el){
