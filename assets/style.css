@@ -25,6 +25,9 @@ button {
   border:1px solid rgb(147, 96, 30, .7);
   background-color: rgba(169, 111, 36, 0.2)!important;
 }
+.fa-x{
+  cursor: pointer;
+}
 .settingModal{
   position: fixed;
   width: 25vw;
@@ -38,21 +41,25 @@ button {
   display: flex;
   justify-content: space-between;
 }
+.settingModal>h2{
+  width: 50%;
+  text-align: center;
+}
 .bg-cover{
   position: fixed;
   width: 100vw;
   height: 100vh;
   display: none;
-  background-color: rgba(0, 0, 0, 0.582);
+  background-color: rgba(0, 0, 0, 0.705);
   z-index: 50;
 }
 .topNav {
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 0 20px 0 0;
-  background-color: rgb(255, 255, 255);
   position: fixed;
   top: 0;
   left: 0;
@@ -105,6 +112,7 @@ button {
 
 /* Side Bar */
 .sidebar {
+  background-color: transparent;
   position: fixed;
   height: calc(100vh - 100px);
   top: 100px;
@@ -142,8 +150,8 @@ button {
   top: 100px;
   width: calc(100vw - 100px);
   height: calc( 100vh - 100px);
-  border-top:2px solid rgb(147, 96, 30, .7);
-  border-left:2px solid rgb(147, 96, 30, .7);
+  border-top:2px solid rgba(155, 101, 30, 0.1);
+  border-left:2px solid rgba(155, 101, 30, 0.1);
   border-top-left-radius: 15px;
   background-color: rgb(147, 96, 30,.1);
 }
@@ -190,7 +198,7 @@ padding: 20px;
   width: 100%;
 }
 .fa-magnifying-glass{
-  background-color: rgb(147, 96, 30, .3);
+  background-color: #b89b7c80;
   border-radius:5px;
   padding: 12px;
   color: rgb(147, 96, 30);

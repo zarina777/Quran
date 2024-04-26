@@ -29,6 +29,17 @@ app.append(bgCover)
 
 let mode = document.createElement('li')
 mode.innerHTML=`<i class="fa-solid fa-moon"></i>`
+mode.addEventListener('click',()=>{
+if(mode.innerHTML==`<i class="fa-solid fa-moon"></i>`){
+mode.innerHTML='<i class="fa-solid fa-sun"></i>'
+document.querySelector('body').style.backgroundColor='rgb(0,0,0)'
+}else{
+mode.innerHTML=`<i class="fa-solid fa-moon"></i>`
+document.querySelector('body').style.backgroundColor='#fff'
+}
+  
+})
+
 
 let setting = document.createElement('li')
 setting.innerHTML=`	<i class="fa-solid fa-gear"></i>`
