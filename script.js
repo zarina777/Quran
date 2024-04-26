@@ -69,22 +69,76 @@ function getContainer(){
 function toHome(){
   let home = document.createElement('div')
   home.setAttribute("class", "home");
+  home.innerHTML= '<h1>Welcome to Home page...</h1>'
   container.append(home)
 }
 function toMainPage(){
   let mainPage = document.createElement('div')
   mainPage.setAttribute("class", "mainPage");
   container.append(mainPage)
+
+  // left side of Main Page
+  let leftSide = document.createElement('div')
+  leftSide.classList.add('leftSide')
+  mainPage.append(leftSide)
+
+  let searchSurah= document.createElement('div')
+  searchSurah.setAttribute('class','searchSurah')
+  mainPage.append(searchSurah)
+
+  let searchInput = document.createElement('input')
+  searchInput.placeholder='Search by Surah Name'
+  searchSurah.append(searchInput)
+
+  let quranSurahs = document.createElement('ul')
+  quranSurahs.setAttribute('class','quranSurahs')
+  searchSurah.append(quranSurahs)
+
+  for(let i = 0; i<10;i++){
+    let li = document.createElement('li')
+    li.innerHTML=`${i+1} Surah name`
+    quranSurahs.append(li)
+  }
+  
+  // right side of Main Page
+  let rightSide = document.createElement('div')
+  rightSide.classList.add('rightSide')
+  mainPage.append(rightSide)
+  let nameOfSurah = document.createElement("h2")
+  nameOfSurah.textContent='The name of Surah'
+  rightSide.append(nameOfSurah)
+  let cards = document.createElement("div")
+  cards.setAttribute('class','cards-container')
+  rightSide.append(cards)
+  for(let i = 0; i<10;i++){
+    let card= document.createElement('div')
+    card.innerHTML=`<h3>Surah</h3>`
+    cards.append(card)
+
+  }
+
 }
 function toSaved(){
   let saved = document.createElement('div')
   saved.setAttribute("class", "saved");
+  saved.innerHTML= '<h1>Favourite surahs...</h1>'
   container.append(saved)
+}
+function entered(el){
+let elements = document.getElementsByClassName('sidebarNavEl')
+for(i=0;i<elements.length;i++){
+  if(elements[i].className.includes('clicked')){
+    elements[i].classList.remove('clicked')
+  }
+}
+el.classList.add('clicked')
+
 }
 function Clear(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
+
 }
 (() => {
   sideBar.addComponents();
@@ -95,16 +149,20 @@ function Clear(element) {
       window.history.pushState({}, document.title, window.location.pathname);
       history.push("home");
       toHome()
+      entered(home)
     } else if(history.path()==="main") {
       window.history.pushState({}, document.title, window.location.pathname);
       history.push("main");
       toMainPage()
+      entered(mainPage)
     } else{
       toSaved()
+      entered(saved)
     }
   } else {
     history.push('main')
     toMainPage()
+    entered(mainPage)
   }
 })();
 
@@ -112,14 +170,18 @@ home.addEventListener("click", () => {
   history.push("home");
   Clear(container);
   toHome()
+  entered(home)
 });
 mainPage.addEventListener("click", () => {
   history.push("main");
   Clear(container);
   toMainPage()
+  entered(mainPage)
+
 });
 saved.addEventListener("click", () => {
   history.push("saved");
   Clear(container);
   toSaved()
+  entered(saved)
 });

@@ -21,6 +21,10 @@ button {
   outline: none;
   border: none;
 }
+.clicked{
+  border:1px solid rgb(147, 96, 30, .7);
+  background-color: rgba(169, 111, 36, 0.2)!important;
+}
 .topNav {
   display: flex;
   justify-content: space-between;
@@ -45,6 +49,8 @@ button {
 .logoText {
   display: flex;
   flex-direction: column;
+  color:rgb(147, 96, 30);
+  text-shadow: 1px 0px 1px rgb(147, 96, 30);
 }
 .logoText > h4 {
   font-size: 20px;
@@ -72,7 +78,7 @@ button {
   cursor: pointer;
 }
 .settings > li:hover {
-  background-color: rgb(250, 229, 197);
+  background-color: rgba(169, 111, 36, 0.233);
 
 }
 
@@ -87,6 +93,7 @@ button {
   justify-content: center;
   align-items: center;
   gap: 50px;
+  padding: 10px 15px 10px 10px;
 }
 .sidebarNavEl {
   font-size: 25px;
@@ -100,8 +107,9 @@ button {
   border-radius:10px;
   background-color: rgba(169, 111, 36, 0.055);
 }
+
 .sidebarNavEl:hover {
-  color: rgb(255, 203, 125);
+  background-color: rgba(169, 111, 36, 0.274);
   cursor: pointer;
 }
 
@@ -109,5 +117,26 @@ button {
 /* Container */
 .container{
   position: fixed;
-
+  left: 100px;
+  top: 100px;
+  width: calc(100vw - 100px);
+  height: calc( 100vh - 100px);
+  border-top:2px solid rgb(147, 96, 30, .7);
+  border-left:2px solid rgb(147, 96, 30, .7);
+  border-top-left-radius: 15px;
+  background-color: rgb(147, 96, 30,.1);
+}
+/* home */
+.home{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  height: 100%;
+}
+/* Main Page */
+.mainPage{
+display: flex;
+}
+.saved{
+ 
 }
