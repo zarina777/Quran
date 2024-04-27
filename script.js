@@ -33,7 +33,29 @@ mode.addEventListener('click',()=>{
 if(mode.innerHTML==`<i class="fa-solid fa-moon"></i>`){
 mode.innerHTML='<i class="fa-solid fa-sun"></i>'
 document.querySelector('body').style.backgroundColor='rgb(0,0,0)'
+document.getElementsByClassName('leftSide')[0].style.backgroundColor='rgba(165, 103, 48, 0.692)'
+document.getElementsByClassName('leftSide')[0].style.color='rgb(255,255,255)'
+let allItem=document.getElementsByClassName('dark-mode')
+for(i=0;i<allItem.length;i++){
+  allItem[i].style.color='rgb(255,255,255)'
+}
+let surahs= document.querySelectorAll('.cards-container div')
+for(let i=0;i<surahs.length;i++){
+  surahs[i].style.backgroundColor='rgba(165, 103, 48, 0.692)'
+  surahs[i].style.color='rgb(255,255,255)'
+}
 }else{
+  let allItem=document.getElementsByClassName('dark-mode')
+for(i=0;i<allItem.length;i++){
+  allItem[i].style.color='rgb(147, 96, 30)'
+}
+  document.getElementsByClassName('leftSide')[0].style.backgroundColor='rgb(255,255,255)'
+document.getElementsByClassName('leftSide')[0].style.color='rgb(0,0,0)'
+  let surahs= document.querySelectorAll('.cards-container div')
+for(let i=0;i<surahs.length;i++){
+  surahs[i].style.backgroundColor='rgb(255,255,255)'
+  surahs[i].style.color='rgb(0,0,0)'
+}
 mode.innerHTML=`<i class="fa-solid fa-moon"></i>`
 document.querySelector('body').style.backgroundColor='#fff'
 }
@@ -131,7 +153,7 @@ function toMainPage(){
 
   for(let i = 0; i<10;i++){
     let li = document.createElement('li')
-    li.innerHTML=`<span>${i+1}</span> <div class='surah-info'><h3>Surah name</h3> <p>Subname</p></div> <p>Arabic text</p>`
+    li.innerHTML=`<span class='dark-mode'>${i+1}</span> <div class='surah-info'><h3>Surah name</h3> <p>Subname</p></div> <p>Arabic text</p>`
     quranSurahs.append(li)
   }
   
