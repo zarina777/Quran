@@ -21,6 +21,9 @@ button {
   outline: none;
   border: none;
 }
+.onSurah{
+  background-color: rgba(169, 111, 36, 0.233);
+}
 .clicked{
   border:1px solid rgb(147, 96, 30, .7);
   background-color: rgba(169, 111, 36, 0.2)!important;
@@ -217,10 +220,10 @@ cursor: pointer;
   grid-template-columns: 1fr 3fr 1fr;
   gap: 10px;
   cursor:pointer;
+  border-radius: 5px;
 }
 .quranSurahsUl li:hover{
   background-color: #b89b7c80;
-  border-radius: 5px;
 }
 .quranSurahsUl li:hover >span{
   background-color: #ffffff;
