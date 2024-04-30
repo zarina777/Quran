@@ -6,7 +6,10 @@ let ayahs ={}
 let ayahsObjTolocalStorage= JSON.parse(localStorage.getItem('ayah'))
 let nameOfSurah = document.createElement("h2");
 
-GetData("surah");
+GetData("surah").then((res) => res.json())
+.then((data) => {
+  writeToTable(data.data);
+});;
 // function getSingleData (id){
 //   fetch(`http://api.alquran.cloud/v1/surah/${id}`).then(res=>res.json()).then(res=>console.log(res.data))
 // }
@@ -24,11 +27,9 @@ for(let i=0;i<li?.length;i++){
 clicked.classList.add('onSurah')
 }
 async function GetData(str) {
-  await fetch(`http://api.alquran.cloud/v1/${str}`)
-    .then((res) => res.json())
-    .then((data) => {
-      writeToTable(data.data);
-    });
+  let getData= await fetch(`http://api.alquran.cloud/v1/${str}`)
+    return getData
+
 }
 
 
@@ -70,7 +71,7 @@ function writeToTable(data) {
 function writeToMainPage(data){
   for (let i = 0; i < data?.length; i++) {
     let card = document.createElement("div");
-    card.innerHTML = `<h3>${data[i].text}</h3>`;
+    card.innerHTML = `<h3 class='heading-mainPage'>${data[i].text}</h3>`;
     cards.append(card);
   }  
 }
@@ -135,6 +136,7 @@ mode.addEventListener("click", () => {
     }
     mode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
     document.querySelector("body").style.backgroundColor = "#fff";
+    document.getElementsByClassName('heading-mainPage')[0].style.backgroundColor='rgb(147, 96, 30, .7)'
   }
 });
 
