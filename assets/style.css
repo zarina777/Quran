@@ -20,35 +20,44 @@ button {
   cursor: pointer;
   outline: none;
   border: none;
+  color: inherit;
 }
-.onSurah{
-  background-color: rgba(169, 111, 36, 0.233);
+.onSurah {
+  background-color: rgba(244, 213, 172, 0.409)!important;
 }
-.clicked{
-  border:1px solid rgb(147, 96, 30, .7);
-  background-color: rgba(169, 111, 36, 0.2)!important;
+.onSurah>span{
+  color: rgb(147, 96, 30);
+
 }
-.fa-x{
+.clicked {
+  border: 1px solid rgb(147, 96, 30, 0.7);
+  background-color: rgba(169, 111, 36, 0.2) !important;
+}
+.fa-x {
   cursor: pointer;
 }
-.settingModal{
+.settingModal {
   position: fixed;
   width: 25vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.999);
+  color: black;
   top: 0;
   right: -200%;
   z-index: 100;
-  border-radius:20px;
+  border-radius: 20px;
   padding: 13px;
   display: flex;
   justify-content: space-between;
 }
-.settingModal>h2{
+.settingModal > h2 {
   width: 50%;
   text-align: center;
 }
-.bg-cover{
+.settingModal > span {
+  color: black;
+}
+.bg-cover {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -80,8 +89,6 @@ button {
 .logoText {
   display: flex;
   flex-direction: column;
-  color:rgb(147, 96, 30);
-  text-shadow: 1px 0px 1px rgb(147, 96, 30);
 }
 .logoText > h4 {
   font-size: 20px;
@@ -95,9 +102,8 @@ button {
   gap: 20px;
 }
 .settings > li {
-  background-color: rgb(147, 96, 30,.1);
+  background-color: rgba(180, 120, 40, 0.256);
   border: 1px solid rgb(147, 96, 30, .7);
-  color: rgb(147, 96, 30);
   font-size: 23px;
   width: 40px;
   height: 40px;
@@ -105,12 +111,11 @@ button {
   align-items: center;
   justify-content: center;
   border-radius: 7px;
-  transition: all .4s;
+  transition: all 0.4s;
   cursor: pointer;
 }
 .settings > li:hover {
   background-color: rgba(169, 111, 36, 0.233);
-
 }
 
 /* Side Bar */
@@ -129,50 +134,49 @@ button {
 }
 .sidebarNavEl {
   font-size: 25px;
-  color: rgb(147, 96, 30);
-  transition: all .4s;
+  /* color: rgb(147, 96, 30); */
+  transition: all 0.4s;
   width: 50px;
   height: 50px;
   display: flex;
   justify-content: center;
-  align-items:center;
-  border-radius:10px;
-  background-color: rgba(169, 111, 36, 0.055);
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ffd6ab80;
 }
 
 .sidebarNavEl:hover {
-  background-color: rgba(169, 111, 36, 0.274);
+  background-color: rgba(179, 119, 40, 0.274);
   cursor: pointer;
 }
 
-
 /* Container */
-.container{
+.container {
   position: fixed;
   left: 100px;
   top: 100px;
   width: calc(100vw - 100px);
-  height: calc( 100vh - 100px);
-  border-top:2px solid rgba(155, 101, 30, 0.1);
-  border-left:2px solid rgba(155, 101, 30, 0.1);
+  height: calc(100vh - 100px);
+  border-top: 2px solid rgba(155, 101, 30, 0.1);
+  border-left: 2px solid rgba(155, 101, 30, 0.1);
   border-top-left-radius: 15px;
-  background-color: rgb(147, 96, 30,.1);
+  background-color: #ffd6ab59;
 }
 /* home */
-.home{
+.home {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   height: 100%;
 }
 /* Main Page */
-.mainPage{
-display: flex;
-gap: 20px;
-padding: 20px;
+.mainPage {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
 }
 /* Main page leftside */
-.leftSide{
+.leftSide {
   width: 30%;
   height: calc(100vh - 120px);
   background-color: rgb(255, 255, 255);
@@ -183,64 +187,61 @@ padding: 20px;
   overflow: hidden;
   gap: 20px;
 }
-.searchSurah{
+.searchSurah {
   display: flex;
   width: 100%;
   justify-content: space-between;
   gap: 15px;
-  align-items:center;
-  border:1px solid rgba(147, 96, 30, 0.484);
+  align-items: center;
+  border: 1px solid rgba(147, 96, 30, 0.484);
   padding: 5px;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
-.searchInput{
+.searchInput {
   font-size: 17px;
   background-color: transparent;
   padding: 0 6px;
   width: 100%;
 }
-.fa-magnifying-glass{
-  background-color: #b89b7c80;
-  border-radius:5px;
+.fa-magnifying-glass {
+  background-color: #ffd6ab80;
+  border-radius: 5px;
   padding: 12px;
   color: rgb(147, 96, 30);
-cursor: pointer;
-
+  cursor: pointer;
 }
-.quranSurahsUl{
+.quranSurahsUl {
   display: flex;
   flex-direction: column;
   gap: 20px;
   overflow: scroll;
 }
-.quranSurahsUl li{
+.quranSurahsUl li {
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   gap: 10px;
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 5px;
 }
-.quranSurahsUl li:hover{
-  background-color: #b89b7c80;
+.quranSurahsUl li:hover {
+  background-color: #ffd6ab80;
 }
-.quranSurahsUl li:hover >span{
+.quranSurahsUl li:hover > span {
   background-color: #ffffff;
-
 }
 
-.quranSurahsUl li>span{
-  background-color: #b89b7c80;
-  color:rgb(147, 96, 30);
+.quranSurahsUl li > span {
+  background-color: #ffd6ab80;
   justify-self: center;
   align-self: center;
   padding: 10px 18px;
-  border-radius:50%;
+  border-radius: 50%;
 }
 /* Main page rightside */
 
-.rightSide{
+.rightSide {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -248,24 +249,31 @@ cursor: pointer;
   overflow: scroll;
   height: calc(100vh - 120px);
 }
-.rightSide h2{
+.rightSide h2 {
   background-color: #fff;
   padding: 20px;
-  border-radius:10px;
+  border-radius: 10px;
   text-align: center;
 }
-.cards-container{
+.cards-container {
   gap: 20px;
   display: flex;
   flex-direction: column;
 }
-.cards-container>div{
-  background-color: rgba(255,255,255);
-  border-radius:10px;
+.cards-container > div {
+  background-color: rgba(255, 255, 255);
+  border-radius: 10px;
   padding: 20px;
 }
-
-.saved{
- text-align: center;
- padding: 30px;
+body {
+  background-color: rgb(255, 255, 255);
+  color: rgb(90, 60, 21);
+}
+.dark-mode {
+  background-color: rgb(88, 55, 39) !important;
+  color: #fff;
+}
+.saved {
+  text-align: center;
+  padding: 30px;
 }

@@ -5,19 +5,18 @@ let cards = document.createElement("div");
 let ayahs ={}
 let ayahsObjTolocalStorage= JSON.parse(localStorage.getItem('ayah'))
 let nameOfSurah = document.createElement("h2");
+let modeLocalStorage = localStorage.getItem('mode')?localStorage.getItem('mode'):'true'
 
+async function GetData(str) {
+  let getData= await fetch(`http://api.alquran.cloud/v1/${str}`)
+    return getData
+}
 GetData("surah").then((res) => res.json())
 .then((data) => {
   writeToTable(data.data);
 });;
-// function getSingleData (id){
-//   fetch(`http://api.alquran.cloud/v1/surah/${id}`).then(res=>res.json()).then(res=>console.log(res.data))
-// }
-// (()=>{
-//   fetch('http://api.alquran.cloud/v1/surah/2').then(res=>res.json()).then(data=>{
-//    console.log(data.data);
-// })
-//   })()
+
+
 
 function surahClicked(clicked){
 let li = document.getElementsByClassName('surahOnTableLi')
@@ -25,11 +24,6 @@ for(let i=0;i<li?.length;i++){
   li[i].classList.remove('onSurah')
 }
 clicked.classList.add('onSurah')
-}
-async function GetData(str) {
-  let getData= await fetch(`http://api.alquran.cloud/v1/${str}`)
-    return getData
-
 }
 
 
@@ -40,7 +34,8 @@ function writeToTable(data) {
   for (let i = 0; i < data?.length; i++) {
     let li = document.createElement("li");
     li.classList.add('surahOnTableLi')
-    li.innerHTML = `<span class='dark-mode onSurah-span'>${data[i].number}</span> <div class='surah-info'><h3>${data[i].englishName}</h3> <p>${data[i].englishNameTranslation}</p></div> <p>${data[i].name}</p>`;
+    modeLocalStorage=='false'?li.classList.add('dark-mode'):li.classList.remove('dark-mode')
+    li.innerHTML = `<span class=' onSurah-span'>${data[i].number}</span> <div class='surah-info'><h3>${data[i].englishName}</h3> <p>${data[i].englishNameTranslation}</p></div> <p>${data[i].name}</p>`;
     quranSurahs.appendChild(li);
     li.addEventListener("click", async () => {
       surahClicked(li)
@@ -63,7 +58,7 @@ function writeToTable(data) {
 
           }
           return ayahs
-        }).then((data)=>console.log(data));
+        });
     });
   }
 }
@@ -71,7 +66,8 @@ function writeToTable(data) {
 function writeToMainPage(data){
   for (let i = 0; i < data?.length; i++) {
     let card = document.createElement("div");
-    card.innerHTML = `<h3 class='heading-mainPage'>${data[i].text}</h3>`;
+    modeLocalStorage=='false'?card.classList.add('dark-mode'):card.classList.remove('dark-mode')
+    card.innerHTML = `<h3 id='heading' class='heading-mainPage'>${data[i].text}</h3>`;
     cards.append(card);
   }  
 }
@@ -105,40 +101,27 @@ app.append(bgCover);
 let mode = document.createElement("li");
 mode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
 mode.addEventListener("click", () => {
-  if (mode.innerHTML == `<i class="fa-solid fa-moon"></i>`) {
+  modeLocalStorage= modeLocalStorage=='true'?'false':'true'
+  localStorage.setItem('mode',modeLocalStorage)
+  if(modeLocalStorage=='false'){
     mode.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    document.querySelector("body").style.backgroundColor = "rgb(0,0,0)";
-    document.getElementsByClassName("leftSide")[0].style.backgroundColor =
-      "rgba(165, 103, 48, 0.692)";
-    document.getElementsByClassName("leftSide")[0].style.color =
-      "rgb(255,255,255)";
-    let allItem = document.getElementsByClassName("dark-mode");
-    for (i = 0; i < allItem.length; i++) {
-      allItem[i].style.color = "rgb(255,255,255)";
-    }
-    let surahs = document.querySelectorAll(".cards-container div");
-    for (let i = 0; i < surahs.length; i++) {
-      surahs[i].style.backgroundColor = "rgba(165, 103, 48, 0.692)";
-      surahs[i].style.color = "rgb(255,255,255)";
-    }
-  } else {
-    let allItem = document.getElementsByClassName("dark-mode");
-    for (i = 0; i < allItem.length; i++) {
-      allItem[i].style.color = "rgb(147, 96, 30)";
-    }
-    document.getElementsByClassName("leftSide")[0].style.backgroundColor =
-      "rgb(255,255,255)";
-    document.getElementsByClassName("leftSide")[0].style.color = "rgb(0,0,0)";
-    let surahs = document.querySelectorAll(".cards-container div");
-    for (let i = 0; i < surahs.length; i++) {
-      surahs[i].style.backgroundColor = "rgb(255,255,255)";
-      surahs[i].style.color = "rgb(0,0,0)";
-    }
+    document.querySelector('body').classList.add('dark-mode')
+    document.querySelector('.leftSide').classList.add('dark-mode')
+    nameOfSurah.classList.add('dark-mode')
+    document.querySelectorAll('.cards-container div').forEach(el=>el.classList.add('dark-mode'))
+    document.querySelectorAll('.surahOnTableLi').forEach(el=>el.classList.add('dark-mode'))
+  }else{
     mode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-    document.querySelector("body").style.backgroundColor = "#fff";
-    document.getElementsByClassName('heading-mainPage')[0].style.backgroundColor='rgb(147, 96, 30, .7)'
+    document.querySelector('body').classList.remove('dark-mode')
+    document.querySelector('.leftSide').classList.remove('dark-mode')
+   nameOfSurah.classList.remove('dark-mode')
+    document.querySelectorAll('.cards-container div').forEach(el=>el.classList.remove('dark-mode'))
+    document.querySelectorAll('.surahOnTableLi').forEach(el=>el.classList.remove('dark-mode'))
+
   }
+
 });
+
 
 let setting = document.createElement("li");
 setting.innerHTML = `	<i class="fa-solid fa-gear"></i>`;
@@ -213,7 +196,12 @@ function toMainPage() {
   let leftSide = document.createElement("div");
   leftSide.classList.add("leftSide");
   mainPage.append(leftSide);
+  if(modeLocalStorage=='false'){
+    leftSide.classList.add('dark-mode')
+  }else{
+    leftSide.classList.remove('dark-mode')
 
+  }
   let searchSurah = document.createElement("form");
   searchSurah.setAttribute("class", "searchSurah");
   searchSurah.innerHTML =
@@ -288,10 +276,48 @@ mainPage.addEventListener("click", () => {
   Clear(container);
   toMainPage();
   entered(mainPage);
+  if(modeLocalStorage=='false'){
+ nameOfSurah.classList.add('dark-mode')
+
+    document.querySelectorAll('.surahOnTableLi').forEach(el=>el.classList.add('dark-mode'))
+    document.querySelectorAll('.cards-container div').forEach(el=>el.classList.add('dark-mode'))
+
+  }else{
+ nameOfSurah.classList.remove('dark-mode')
+
+  document.querySelectorAll('.surahOnTableLi').forEach(el=>el.classList.remove('dark-mode'))
+  document.querySelectorAll('.cards-container div').forEach(el=>el.classList.remove('dark-mode'))
+
+  }
+
 });
 saved.addEventListener("click", () => {
   history.push("saved");
   Clear(container);
   toSaved();
   entered(saved);
+
 });
+
+
+
+function modeContol(){
+  // Globally called MODE
+if(modeLocalStorage=='false'){
+  mode.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  document.querySelector('body').classList.add('dark-mode')
+  document.querySelector('.leftSide').classList.add('dark-mode')
+  nameOfSurah.classList.add('dark-mode')
+  document.querySelectorAll('.cards-container div').forEach(el=>el.classList.add('dark-mode'))
+  document.querySelectorAll('.surahOnTableLi').forEach(el=>el.classList.add('dark-mode'))
+}else{
+  mode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+  document.querySelector('body').classList.remove('dark-mode')
+  document.querySelector('.leftSide').classList.remove('dark-mode')
+ nameOfSurah.classList.remove('dark-mode')
+  document.querySelectorAll('.cards-container div').forEach(el=>el.classList.remove('dark-mode'))
+  document.querySelectorAll('.surahOnTableLi').forEach(el=>el.classList.remove('dark-mode'))
+
+}
+}
+modeContol()
