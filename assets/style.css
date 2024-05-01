@@ -25,8 +25,10 @@ button {
 .onSurah {
   background-color: rgba(244, 213, 172, 0.409)!important;
 }
+
 .onSurah>span{
   color: rgb(147, 96, 30);
+  background-color: #fff!important;
 
 }
 .clicked {
@@ -229,6 +231,7 @@ button {
   background-color: #ffd6ab80;
 }
 .quranSurahsUl li:hover > span {
+  color:rgb(91, 65, 41);
   background-color: #ffffff;
 }
 

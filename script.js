@@ -6,7 +6,7 @@ let ayahs ={}
 let ayahsObjTolocalStorage= JSON.parse(localStorage.getItem('ayah'))
 let nameOfSurah = document.createElement("h2");
 let modeLocalStorage = localStorage.getItem('mode')?localStorage.getItem('mode'):'true'
-
+let nameOfSurahText="The name of Surah"
 async function GetData(str) {
   let getData= await fetch(`http://api.alquran.cloud/v1/${str}`)
     return getData
@@ -14,7 +14,7 @@ async function GetData(str) {
 GetData("surah").then((res) => res.json())
 .then((data) => {
   writeToTable(data.data);
-});;
+});
 
 
 
@@ -49,12 +49,13 @@ function writeToTable(data) {
           let num = data.number.toString()
           if(ayahs[num]){
             writeToMainPage(ayahs[num])
-            nameOfSurah.textContent=data.englishName
-            
+            nameOfSurahText=data.englishName
+            nameOfSurah.textContent= nameOfSurahText
           }else{
             ayahs[num]=data.ayahs
             writeToMainPage(ayahs[num])
-            nameOfSurah.textContent=data.englishName
+            nameOfSurahText=data.englishName
+            nameOfSurah.textContent= nameOfSurahText
 
           }
           return ayahs
@@ -71,7 +72,6 @@ function writeToMainPage(data){
     cards.append(card);
   }  
 }
-writeToTable();
 
 // TOP NAVBAR
 let topNav = document.createElement("div");
@@ -214,7 +214,7 @@ function toMainPage() {
   let rightSide = document.createElement("div");
   rightSide.classList.add("rightSide");
   mainPage.append(rightSide);
-  nameOfSurah.textContent = "The name of Surah";
+  nameOfSurah.textContent = nameOfSurahText;
   rightSide.append(nameOfSurah);
   cards.setAttribute("class", "cards-container");
   rightSide.append(cards);
@@ -276,6 +276,7 @@ mainPage.addEventListener("click", () => {
   Clear(container);
   toMainPage();
   entered(mainPage);
+  
   if(modeLocalStorage=='false'){
  nameOfSurah.classList.add('dark-mode')
 
